@@ -1,0 +1,850 @@
+/* =========================================================
+   CloudTWEAKS V3 — Cloud AI
+   Exact stylesheet for CloudAI.tsx
+   ========================================================= */
+
+.cloud-ai-page {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  padding: 30px 34px 18px;
+
+  color: #f2f4ff;
+  overflow: hidden;
+}
+
+.cloud-ai-page *,
+.cloud-ai-page *::before,
+.cloud-ai-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.cloud-ai-header {
+  width: 100%;
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.cloud-ai-title {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.cloud-ai-icon {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+
+  display: grid;
+  place-items: center;
+
+  color: #aeb7ff;
+  background: #252b52;
+  border: 1px solid #3b4471;
+  border-radius: 10px;
+
+  box-shadow: 0 0 22px rgba(89, 103, 232, 0.10);
+}
+
+.cloud-ai-title h1 {
+  margin: 0;
+
+  color: #f4f5fb;
+
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 750;
+  letter-spacing: -0.6px;
+}
+
+.cloud-ai-title p {
+  margin: 6px 0 0;
+
+  color: #81899c;
+
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.cloud-ai-clear {
+  height: 34px;
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 0 11px;
+
+  color: #9299aa;
+  background: #151822;
+  border: 1px solid #292f3e;
+  border-radius: 7px;
+
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color .15s ease,
+    background .15s ease,
+    border-color .15s ease,
+    transform .15s ease;
+}
+
+.cloud-ai-clear:hover:not(:disabled) {
+  color: #e8eaf2;
+  background: #1c202b;
+  border-color: #41485e;
+}
+
+.cloud-ai-clear:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.cloud-ai-clear svg {
+  color: #6977f5;
+}
+
+.cloud-ai-clear:disabled {
+  opacity: .42;
+  cursor: default;
+}
+
+/* =========================================================
+   LIVE SYSTEM STATS
+   ========================================================= */
+
+.cloud-ai-stats {
+  width: 100%;
+  flex: 0 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.cloud-ai-stat {
+  min-width: 0;
+  min-height: 61px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 12px;
+
+  background: #151822;
+  border: 1px solid #292f3e;
+  border-radius: 8px;
+
+  transition:
+    background .15s ease,
+    border-color .15s ease;
+}
+
+.cloud-ai-stat:hover {
+  background: #181c26;
+  border-color: #353c51;
+}
+
+.cloud-ai-stat-icon {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+
+  display: grid;
+  place-items: center;
+
+  color: #8e9aff;
+  background: #222846;
+  border: 1px solid #353e69;
+  border-radius: 7px;
+}
+
+.cloud-ai-stat > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cloud-ai-stat span {
+  color: #697185;
+
+  font-size: 7px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .8px;
+}
+
+.cloud-ai-stat strong {
+  color: #eef0f7;
+
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: -.15px;
+}
+
+.cloud-ai-stat strong.online {
+  color: #64cf95;
+}
+
+/* =========================================================
+   CHAT PANEL
+   ========================================================= */
+
+.cloud-ai-chat {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #11141c;
+  border: 1px solid #292f3e;
+  border-radius: 9px;
+
+  overflow: hidden;
+}
+
+.cloud-ai-messages {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+
+  padding: 20px 22px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: thin;
+  scrollbar-color: #303748 transparent;
+}
+
+.cloud-ai-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cloud-ai-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cloud-ai-messages::-webkit-scrollbar-thumb {
+  background: #303748;
+  border-radius: 10px;
+}
+
+.cloud-ai-message {
+  width: 100%;
+  max-width: 900px;
+
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+
+  margin: 0 0 18px;
+}
+
+.cloud-ai-message:last-of-type {
+  margin-bottom: 0;
+}
+
+.cloud-ai-avatar {
+  width: 33px;
+  height: 33px;
+  flex: 0 0 33px;
+
+  display: grid;
+  place-items: center;
+
+  color: #aeb7ff;
+  background: #252b52;
+  border: 1px solid #3b4471;
+  border-radius: 8px;
+}
+
+.cloud-ai-message.user .cloud-ai-avatar {
+  color: #e6c46a;
+  background: #302817;
+  border-color: #50431f;
+}
+
+.cloud-ai-message-content {
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.cloud-ai-message-name {
+  margin: 0 0 5px;
+
+  color: #e1e4ee;
+
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 750;
+}
+
+.cloud-ai-message.user .cloud-ai-message-name {
+  color: #d5d9e5;
+}
+
+.cloud-ai-bubble {
+  width: fit-content;
+  max-width: 100%;
+
+  padding: 11px 13px;
+
+  color: #aeb5c5;
+  background: #171a23;
+  border: 1px solid #292f3e;
+  border-radius: 7px;
+
+  font-size: 10px;
+  line-height: 1.65;
+
+  word-break: break-word;
+}
+
+.cloud-ai-message.user .cloud-ai-bubble {
+  color: #d7dbe6;
+  background: #1c2030;
+  border-color: #303852;
+}
+
+.cloud-ai-bubble strong {
+  color: #f0f2f8;
+  font-weight: 750;
+}
+
+.cloud-ai-bubble em {
+  color: #c3c8d7;
+}
+
+.cloud-ai-bubble h2,
+.cloud-ai-bubble h3,
+.cloud-ai-bubble h4 {
+  margin: 8px 0 5px;
+
+  color: #eef0f7;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.cloud-ai-bubble h2 {
+  font-size: 14px;
+}
+
+.cloud-ai-bubble h3 {
+  font-size: 12px;
+}
+
+.cloud-ai-bubble h4 {
+  font-size: 11px;
+}
+
+.cloud-ai-bubble h2:first-child,
+.cloud-ai-bubble h3:first-child,
+.cloud-ai-bubble h4:first-child {
+  margin-top: 0;
+}
+
+.cloud-ai-bubble ul {
+  margin: 5px 0;
+  padding-left: 18px;
+}
+
+.cloud-ai-bubble li {
+  margin: 3px 0;
+}
+
+.cloud-ai-bubble code.ai-inline-code {
+  padding: 2px 5px;
+
+  color: #aeb8ff;
+  background: #20253a;
+  border: 1px solid #313957;
+  border-radius: 4px;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+
+  font-size: 9px;
+}
+
+.cloud-ai-bubble pre.ai-code {
+  max-width: 100%;
+
+  margin: 8px 0;
+  padding: 10px 11px;
+
+  overflow-x: auto;
+
+  color: #cdd3e4;
+  background: #0d1017;
+  border: 1px solid #292f3e;
+  border-radius: 6px;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.cloud-ai-bubble pre.ai-code code {
+  color: inherit;
+}
+
+/* =========================================================
+   THINKING
+   ========================================================= */
+
+.cloud-ai-thinking {
+  min-height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cloud-ai-thinking span {
+  width: 5px;
+  height: 5px;
+
+  display: block;
+
+  background: #6977f5;
+  border-radius: 50%;
+
+  animation: cloud-ai-dot 1.15s infinite ease-in-out;
+}
+
+.cloud-ai-thinking span:nth-child(2) {
+  animation-delay: .14s;
+}
+
+.cloud-ai-thinking span:nth-child(3) {
+  animation-delay: .28s;
+}
+
+@keyframes cloud-ai-dot {
+  0%, 60%, 100% {
+    opacity: .28;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* =========================================================
+   QUICK PROMPTS
+   ========================================================= */
+
+.cloud-ai-quick {
+  width: 100%;
+  flex: 0 0 auto;
+
+  padding: 0 2px;
+}
+
+.cloud-ai-quick-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 7px;
+
+  color: #6f778a;
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .65px;
+  text-transform: uppercase;
+}
+
+.cloud-ai-quick-title svg {
+  color: #6977f5;
+}
+
+.cloud-ai-quick-list {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.cloud-ai-quick-list button {
+  min-width: 0;
+  min-height: 38px;
+
+  padding: 0 10px;
+
+  color: #9299aa;
+  background: #151822;
+  border: 1px solid #292f3e;
+  border-radius: 7px;
+
+  font-family: inherit;
+  font-size: 8px;
+  line-height: 1.35;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color .15s ease,
+    background .15s ease,
+    border-color .15s ease,
+    transform .15s ease;
+}
+
+.cloud-ai-quick-list button:hover:not(:disabled) {
+  color: #e7e9f1;
+  background: #1b1f2a;
+  border-color: #414960;
+}
+
+.cloud-ai-quick-list button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.cloud-ai-quick-list button:disabled {
+  opacity: .45;
+  cursor: default;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.cloud-ai-input-area {
+  width: 100%;
+  flex: 0 0 auto;
+
+  padding: 0 2px;
+}
+
+.cloud-ai-input {
+  width: 100%;
+  min-height: 48px;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+
+  padding: 6px 6px 6px 11px;
+
+  background: #151822;
+  border: 1px solid #2c3242;
+  border-radius: 8px;
+
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    box-shadow .15s ease;
+}
+
+.cloud-ai-input:focus-within {
+  background: #181c26;
+  border-color: #4b58b4;
+  box-shadow: 0 0 0 2px rgba(89, 103, 232, .07);
+}
+
+.cloud-ai-input textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 33px;
+  max-height: 180px;
+
+  display: block;
+
+  margin: 0;
+  padding: 8px 4px;
+
+  resize: none;
+
+  color: #e7e9f1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 1.45;
+
+  scrollbar-width: thin;
+}
+
+.cloud-ai-input textarea::placeholder {
+  color: #5e6678;
+}
+
+.cloud-ai-input textarea:disabled {
+  opacity: .5;
+}
+
+.cloud-ai-send {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+
+  display: grid;
+  place-items: center;
+
+  color: #656d7e;
+  background: #202430;
+  border: 1px solid #303647;
+  border-radius: 6px;
+
+  cursor: default;
+
+  transition:
+    color .15s ease,
+    background .15s ease,
+    border-color .15s ease,
+    transform .15s ease;
+}
+
+.cloud-ai-send:not(:disabled) {
+  color: #ffffff;
+  background: #5967e8;
+  border-color: #5967e8;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 14px rgba(89, 103, 232, .18);
+}
+
+.cloud-ai-send:not(:disabled):hover {
+  background: #6977f5;
+  border-color: #6977f5;
+}
+
+.cloud-ai-send:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.cloud-ai-send:disabled {
+  opacity: .55;
+}
+
+/* =========================================================
+   INPUT HINT
+   ========================================================= */
+
+.cloud-ai-input-hint {
+  min-height: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 5px 2px 0;
+
+  color: #555d6f;
+
+  font-size: 7px;
+}
+
+.cloud-ai-input-hint span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cloud-ai-input-hint b {
+  color: #7c8497;
+  font-weight: 750;
+}
+
+/* =========================================================
+   SYSTEM INFORMATION
+   ========================================================= */
+
+.cloud-ai-system-info {
+  width: 100%;
+  min-height: 20px;
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+
+  padding: 0 2px;
+
+  color: #50586a;
+
+  font-size: 7px;
+  font-weight: 650;
+}
+
+.cloud-ai-system-info span {
+  white-space: nowrap;
+}
+
+.cloud-ai-system-info span + span::before {
+  content: "•";
+  margin-right: 16px;
+  color: #303646;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .cloud-ai-page {
+    padding: 24px 24px 15px;
+  }
+
+  .cloud-ai-quick-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .cloud-ai-page {
+    padding: 18px;
+    gap: 11px;
+  }
+
+  .cloud-ai-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cloud-ai-chat {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cloud-ai-page {
+    padding: 14px;
+  }
+
+  .cloud-ai-title h1 {
+    font-size: 21px;
+  }
+
+  .cloud-ai-title p {
+    font-size: 9px;
+  }
+
+  .cloud-ai-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .cloud-ai-clear {
+    width: 34px;
+    padding: 0;
+  }
+
+  .cloud-ai-clear svg {
+    margin: 0;
+  }
+
+  .cloud-ai-clear {
+    font-size: 0;
+  }
+
+  .cloud-ai-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .cloud-ai-stat {
+    min-height: 54px;
+    padding: 8px;
+  }
+
+  .cloud-ai-stat-icon {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+  }
+
+  .cloud-ai-stat strong {
+    font-size: 12px;
+  }
+
+  .cloud-ai-messages {
+    padding: 14px;
+  }
+
+  .cloud-ai-message {
+    grid-template-columns: 29px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .cloud-ai-avatar {
+    width: 29px;
+    height: 29px;
+  }
+
+  .cloud-ai-quick-list {
+    grid-template-columns: 1fr;
+  }
+
+  .cloud-ai-quick-list button {
+    min-height: 36px;
+  }
+
+  .cloud-ai-input-hint {
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .cloud-ai-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .cloud-ai-system-info {
+    display: none;
+  }
+}
