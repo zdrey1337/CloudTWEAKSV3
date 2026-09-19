@@ -1,0 +1,10 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "CloudTWEAKS",
+  "outputfilename": "CloudTWEAKS",
+  "frontend": {
+    "dir": "frontend",
+    "install": "npm install",
+    "build": "npm run build"
+  }
+}
