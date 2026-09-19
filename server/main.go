@@ -18,10 +18,6 @@ var httpClient = &http.Client{
 Timeout: 60 * time.Second,
 }
 
-// ============================================================
-// REQUEST TYPES
-// ============================================================
-
 type CloudAIRequest struct {
 CPU         string `json:"cpu"`
 GPU         string `json:"gpu"`
@@ -40,14 +36,10 @@ Content string `json:"content"`
 }
 
 type CloudAIChatRequest struct {
-Message     string               `json:"message"`
-History     []CloudAIChatMessage `json:"history"`
-SystemStats interface{}          `json:"systemStats,omitempty"`
+Message     string                 `json:"message"`
+History     []CloudAIChatMessage   `json:"history"`
+SystemStats interface{}            `json:"systemStats,omitempty"`
 }
-
-// ============================================================
-// OPENAI RESPONSE TYPES
-// ============================================================
 
 type OpenAIRequest struct {
 Model string `json:"model"`
@@ -62,19 +54,11 @@ Text string `json:"text"`
 } `json:"output"`
 }
 
-// ============================================================
-// CORS
-// ============================================================
-
 func setCORS(w http.ResponseWriter) {
 w.Header().Set("Access-Control-Allow-Origin", "*")
 w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-CloudTWEAKS-Version")
 w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
 }
-
-// ============================================================
-// HEALTH
-// ============================================================
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
 setCORS(w)
@@ -82,17 +66,13 @@ setCORS(w)
 ```
 w.Header().Set("Content-Type", "application/json")
 
-json.NewEncoder(w).Encode(map[string]string{
+_ = json.NewEncoder(w).Encode(map[string]string{
 	"status":  "online",
 	"service": "CloudTWEAKS API",
 })
 ```
 
 }
-
-// ============================================================
-// OPENAI CALL
-// ============================================================
 
 func callOpenAI(prompt string) (string, error) {
 apiKey := strings.TrimSpace(os.Getenv("OPENAI_API_KEY"))
@@ -149,8 +129,10 @@ if err := json.Unmarshal(responseBody, &result); err != nil {
 
 for _, output := range result.Output {
 	for _, content := range output.Content {
-		if strings.TrimSpace(content.Text) != "" {
-			return strings.TrimSpace(content.Text), nil
+		text := strings.TrimSpace(content.Text)
+
+		if text != "" {
+			return text, nil
 		}
 	}
 }
@@ -159,10 +141,6 @@ return "", fmt.Errorf("OpenAI returned an empty response")
 ```
 
 }
-
-// ============================================================
-// ANALYZE
-// ============================================================
 
 func analyzeHandler(w http.ResponseWriter, r *http.Request) {
 setCORS(w)
@@ -235,9 +213,17 @@ Return ONLY valid JSON in this exact structure:
 }
 
 Do not invent tweak IDs outside the allowed list.
-`, request.CPU, request.GPU, request.RAM, request.Motherboard,
-request.Windows, request.Storage, request.MainGame,
-request.Goal, request.Additional)
+`,
+request.CPU,
+request.GPU,
+request.RAM,
+request.Motherboard,
+request.Windows,
+request.Storage,
+request.MainGame,
+request.Goal,
+request.Additional,
+)
 
 ```
 aiResponse, err := callOpenAI(prompt)
@@ -248,7 +234,6 @@ if err != nil {
 	return
 }
 
-// Make sure the AI actually returned valid JSON.
 var result map[string]interface{}
 
 if err := json.Unmarshal([]byte(aiResponse), &result); err != nil {
@@ -258,14 +243,11 @@ if err := json.Unmarshal([]byte(aiResponse), &result); err != nil {
 }
 
 w.Header().Set("Content-Type", "application/json")
-json.NewEncoder(w).Encode(result)
+
+_ = json.NewEncoder(w).Encode(result)
 ```
 
 }
-
-// ============================================================
-// CHAT
-// ============================================================
 
 func chatHandler(w http.ResponseWriter, r *http.Request) {
 setCORS(w)
@@ -340,16 +322,12 @@ if err != nil {
 
 w.Header().Set("Content-Type", "application/json")
 
-json.NewEncoder(w).Encode(map[string]string{
+_ = json.NewEncoder(w).Encode(map[string]string{
 	"message": aiResponse,
 })
 ```
 
 }
-
-// ============================================================
-// MAIN
-// ============================================================
 
 func main() {
 http.HandleFunc("/health", healthHandler)
